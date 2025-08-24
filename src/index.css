@@ -1,6 +1,23 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-/* ul {
-  list-style: none;
-} */
+.filterBtns {
+  display: flex;
+  margin-left: 44rem;
+  position: relative;
+  top: 7rem;
+  right: 1rem;
+  gap: 19px;
+}
+
+.filterAll {
+  cursor: pointer;
+}
+
+.filterActive {
+  cursor: pointer;
+}
+
+.filterCompleted {
+  cursor: pointer;
+}

@@ -1,5 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo, removeTodo, editTodo } from "./app/features/todosSlice";
+import {
+  addTodo,
+  removeTodo,
+  editTodo,
+  filter,
+} from "./app/features/todosSlice";
 import { useState } from "react";
 
 function App() {
@@ -47,7 +52,7 @@ function App() {
 
   return (
     <div className="mt-20">
-      <h1 className="flex justify-center">Todo List Crud</h1>
+      <h1 className="flex justify-center">Todo</h1>
       <form className="flex justify-center" onSubmit={handleSubmit}>
         <div className="flex flex-col items-center justify-center relative left-[6rem]">
           <label>Title: </label>
@@ -71,7 +76,24 @@ function App() {
           Add Todo
         </button>
       </form>
-      <ul className="flex flex-col items-center gap-5 relative top-[10rem] rigth-[2rem] ">
+      <div className="filterBtns">
+        <button className="filterAll" onClick={() => dispatch(filter("all"))}>
+          All
+        </button>
+        <button
+          className="filterActive"
+          onClick={() => dispatch(filter("active"))}
+        >
+          Active
+        </button>
+        <button
+          className="filterCompleted"
+          onClick={() => dispatch(filter("completed"))}
+        >
+          Completed
+        </button>
+      </div>
+      <ul className="flex flex-col items-center gap-5 relative top-[10rem] rigth-[2rem] pb-20">
         {todos &&
           todos.map((todo) => {
             return (
