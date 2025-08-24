@@ -21,3 +21,38 @@
 .filterCompleted {
   cursor: pointer;
 }
+
+.todoItem {
+  cursor: pointer;
+}
+
+.deleteBtn {
+  margin-left: 2.5rem;
+  cursor: pointer;
+  color: #494c6b;
+  position: relative;
+  left: 8rem;
+}
+
+.todoCheck {
+  display: flex;
+  margin-left: 10rem;
+  position: relative;
+  top: 1rem;
+}
+
+.todoCount {
+  position: relative;
+  right: 20rem;
+  top: 0.1rem;
+}
+
+.customContainer {
+  min-height: 15rem;
+  margin: 0 auto;
+  background-image: url("../public/images/main image.png");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #fafafa;
+}

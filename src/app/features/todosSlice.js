@@ -4,6 +4,8 @@ const initialState = localStorage.getItem("todos")
   ? JSON.parse(localStorage.getItem("todos"))
   : {
       todos: [],
+      backup: [],
+      actives: 0,
     };
 
 const todoslice = createSlice({
@@ -12,7 +14,7 @@ const todoslice = createSlice({
   reducers: {
     addTodo: (state, { payload }) => {
       state.todos.push(payload);
-      localStorage.setItem("todos", JSON.stringify(state));
+      state.backup = [...state.todos];
     },
     removeTodo: (state, { payload }) => {
       state.todos = state.todos.filter((todo) => todo.id !== payload);
@@ -24,17 +26,17 @@ const todoslice = createSlice({
           ? { ...todo, title: payload.title, completed: payload.completed }
           : todo
       );
-      localStorage.setItem("todos", JSON.stringify(state));
+      state.backup = [...state.todos];
     },
     filter: (state, { payload }) => {
       const saved = JSON.parse(localStorage.getItem("todos"))?.todos || [];
 
       if (payload === "all") {
-        state.todos = saved;
+        state.todos = state.backup;
       } else if (payload === "active") {
-        state.todos = saved.filter((item) => !item.completed);
+        state.todos = state.backup.filter((item) => !item.completed);
       } else if (payload === "completed") {
-        state.todos = saved.filter((item) => item.completed);
+        state.todos = state.backup.filter((item) => item.completed);
       }
     },
   },
