@@ -1,13 +1,17 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+body {
+  overflow-x: hidden;
+}
+
 .filterBtns {
   display: flex;
   margin-left: 44rem;
   position: relative;
   top: 7rem;
-  right: 1rem;
   gap: 19px;
+  left: 2rem;
 }
 
 .filterAll {
@@ -39,6 +43,29 @@
   margin-left: 10rem;
   position: relative;
   top: 1rem;
+  appearance: none;
+}
+
+.todoCheck::before {
+  font-family: "Font Awesome\ 5 Free";
+  font-weight: 700;
+  content: "";
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #55ddff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 10px;
+  border: 1px solid;
+}
+
+.todoCheck:checked::before {
+  content: "\f00c";
+  background: linear-gradient(135deg, #55ddff 0%, #c058f3 100%);
 }
 
 .todoCount {
@@ -53,6 +80,62 @@
   background-image: url("../public/images/main image.png");
   background-position: top center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 300px;
   background-color: #fafafa;
+}
+
+.todoList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 10rem;
+  position: relative;
+  right: 7rem;
+  top: 2rem;
+}
+
+.todoRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 500px;
+  padding: 0.5rem;
+}
+
+.todoItem {
+  flex: 1;
+  word-break: break-word;
+  cursor: pointer;
+}
+
+.todoCheck {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #55ddff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.todoCheck:checked {
+  background: linear-gradient(135deg, #55ddff 0%, #c058f3 100%);
+}
+
+.todoCheck:checked::before {
+  content: "✔";
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Delete tugma – o‘ngda */
+.deleteBtn {
+  cursor: pointer;
+  color: #494c6b;
+  margin-left: 1rem;
 }

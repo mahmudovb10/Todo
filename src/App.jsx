@@ -23,8 +23,12 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const title = formData.get("title");
+    const title = formData.get("title")?.trim();
     const completed = formData.get("completed") !== null;
+
+    if (!title) {
+      return;
+    }
 
     if (id) {
       dispatch(
@@ -46,6 +50,9 @@ function App() {
         })
       );
     }
+    setId("");
+    setTitle("");
+    setCompleted(false);
 
     e.target.reset();
   };
@@ -58,10 +65,12 @@ function App() {
           <div className="flex flex-col items-center justify-center relative left-[6rem] mainImgLoc">
             <label>Title: </label>
             <input
-              defaultValue={_title}
+              value={_title}
+              onChange={(e) => setTitle(e.target.value)}
               name="title"
               type="text"
               className="input"
+              placeholder="Create a new todo…"
             />
           </div>
           <div className="relative top-[5rem] right-[3rem]">
@@ -96,28 +105,40 @@ function App() {
         </button>
         <div className="todoCount">Items left: {todos.length}</div>
       </div>
-      <ul className="flex flex-col items-center gap-5 relative top-[10rem] rigth-[2rem] pb-20">
+      <ul className="todoList">
         {todos &&
-          todos.map((todo) => {
-            return (
-              <li key={todo.id}>
-                <input type="checkbox" name="" className="todoCheck" />
-                <h4
-                  className="todoItem"
-                  onDoubleClick={() => handleEdit(todo)}
-                  style={{ opacity: todo.completed && "0.3" }}
-                >
-                  {todo.title}
-                  <button
-                    className="deleteBtn"
-                    onClick={() => dispatch(removeTodo(todo.id))}
-                  >
-                    X
-                  </button>
-                </h4>
-              </li>
-            );
-          })}
+          todos.map((todo) => (
+            <li key={todo.id} className="todoRow">
+              <input
+                type="checkbox"
+                className="todoCheck"
+                checked={todo.completed}
+                onChange={() =>
+                  dispatch(
+                    editTodo({
+                      ...todo,
+                      completed: !todo.completed,
+                    })
+                  )
+                }
+              />
+
+              <h4
+                className="todoItem"
+                onDoubleClick={() => handleEdit(todo)}
+                style={{ opacity: todo.completed ? "0.3" : "1" }}
+              >
+                {todo.title}
+              </h4>
+
+              <button
+                className="deleteBtn"
+                onClick={() => dispatch(removeTodo(todo.id))}
+              >
+                X
+              </button>
+            </li>
+          ))}
       </ul>
     </div>
   );
