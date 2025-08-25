@@ -15,10 +15,12 @@ const todoslice = createSlice({
     addTodo: (state, { payload }) => {
       state.todos.push(payload);
       state.backup = [...state.todos];
+      localStorage.setItem("todos", JSON.stringify(state)); // ✅ saqlash
     },
     removeTodo: (state, { payload }) => {
       state.todos = state.todos.filter((todo) => todo.id !== payload);
-      localStorage.setItem("todos", JSON.stringify(state));
+      state.backup = [...state.todos];
+      localStorage.setItem("todos", JSON.stringify(state)); // ✅ saqlash
     },
     editTodo: (state, { payload }) => {
       state.todos = state.todos.map((todo) =>
@@ -27,10 +29,9 @@ const todoslice = createSlice({
           : todo
       );
       state.backup = [...state.todos];
+      localStorage.setItem("todos", JSON.stringify(state)); // ✅ saqlash
     },
     filter: (state, { payload }) => {
-      const saved = JSON.parse(localStorage.getItem("todos"))?.todos || [];
-
       if (payload === "all") {
         state.todos = state.backup;
       } else if (payload === "active") {
