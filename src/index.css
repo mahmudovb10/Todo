@@ -16,14 +16,17 @@ body {
 
 .filterAll {
   cursor: pointer;
+  color: #9495a5;
 }
 
 .filterActive {
   cursor: pointer;
+  color: #9495a5;
 }
 
 .filterCompleted {
   cursor: pointer;
+  color: #9495a5;
 }
 
 .todoItem {
@@ -72,6 +75,7 @@ body {
   position: relative;
   right: 20rem;
   top: 0.1rem;
+  color: #9495a5;
 }
 
 .customContainer {
@@ -92,7 +96,7 @@ body {
   margin-top: 10rem;
   position: relative;
   right: 7rem;
-  top: 2rem;
+  top: 3rem;
 }
 
 .todoRow {
@@ -138,4 +142,34 @@ body {
   cursor: pointer;
   color: #494c6b;
   margin-left: 1rem;
+}
+
+.customHr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 8px 0;
+}
+
+.mainInp {
+  position: relative;
+  top: 8rem;
+  right: auto;
+  left: auto;
+}
+
+.title {
+  width: 167px;
+  height: 40px;
+  font-weight: 700;
+  font-size: 40px;
+  position: relative;
+  left: 35rem;
+  top: 7rem;
+  color: #ffffff;
+}
+
+.mainInput {
+  width: 400px;
+  height: 50px;
+  margin-top: 2rem;
 }
